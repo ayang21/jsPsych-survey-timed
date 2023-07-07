@@ -20,26 +20,13 @@
 
     </body>
     <script>  
-        // function set(){
-        //     const [stim, changeStim] = React.useState("hi");
-        // }
-        // set 
-        survey_data = []
-        function repeat_form(){
-                var entries = document.getElementById("input-1");
-                survey_data.push(entries.value);
-                document.getElementById("list-of-entries").innerHTML += '<p id = "entry-items" style = "border: solid #666666 1px; padding: none; margin: 2px; border-radius: 5px;"> ' + entries.value + "</p>";
-                // document.getElementById('test').style.animation = 'fading 2s infinite'
-                entries.value = "";
-                entries.focus();    
-                
-        }
 
         const jsPsych = initJsPsych({
             on_finish: function(){
                 jsPsych.data.displayData();
             }
         });
+
         var timeline = [];
         
         var introductions = {

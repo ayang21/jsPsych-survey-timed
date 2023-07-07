@@ -1,4 +1,21 @@
 // import React from 'react';
+function containsNumbers(str) {
+    return /\d/.test(str);
+  }
+function repeat_form(data){
+    var entries = document.getElementById("input-1");
+    entriesVal = entries.value;
+    
+    if (!containsNumbers(entriesVal)){
+        data.push(entriesVal);
+        document.getElementById("list-of-entries").innerHTML += '<p id = "entry-items" style = "border: solid #666666 1px; padding: none; margin: 2px; border-radius: 5px;"> ' + entriesVal + "</p>";
+    }
+    // document.getElementById('test').style.animation = 'fading 2s infinite'
+    entries.value = "";
+    entries.focus();    
+        
+}
+var survey_data = [];
 var jsPsychSurveyTextTimed = (function (jspsych) {
 
     // const [array, setArray] = React.useState0
@@ -13,6 +30,11 @@ var jsPsychSurveyTextTimed = (function (jspsych) {
             trial_duaration: {
                 type: jspsych.ParameterType.INT,
                 pretty_name: "Trial length",
+                default: null,
+            },
+            target_num_inputs: {
+                type: jspsych.ParameterType.INT,
+                pretty_name: "Num of inputs",
                 default: null,
             },
             placeholder: {
@@ -38,6 +60,7 @@ var jsPsychSurveyTextTimed = (function (jspsych) {
                 pretty_name: "Allow autocomplete",
                 default: false,
             },
+            
         },
     };
     /**
@@ -47,12 +70,13 @@ var jsPsychSurveyTextTimed = (function (jspsych) {
      *
      * @author Adam Yang
          */
+    
     class SurveyTextTimedPlugin {
         constructor(jsPsych) {
             this.jsPsych = jsPsych;
         }
-        trial(display_element, trial) {
 
+        trial(display_element, trial) {
             if (typeof trial.trial_duration == null) {
                 trial.trial_duration = 5000;
             }
@@ -94,7 +118,7 @@ var jsPsychSurveyTextTimed = (function (jspsych) {
 
             // add submit button
             html +=
-                '<input type="submit" id="jspsych-survey-text-timed-next" class="jspsych-btn jspsych-survey-text-timed" onclick = "repeat_form()" value="' +
+                '<input type="submit" id="jspsych-survey-text-timed-next" class="jspsych-btn jspsych-survey-text-timed" onclick = "repeat_form(survey_data)" value="' +
                     trial.button_label +
                     '"></input>';
             html += "</form>";
@@ -102,7 +126,6 @@ var jsPsychSurveyTextTimed = (function (jspsych) {
             html += '<div id = "list-of-entries" style = "position: absolute; width: 10.6rem;"></div>'
             display_element.innerHTML = html;
 
-            var trialdata = {};
             var response_time = 0;
             // backup in case autofocus doesn't work
             display_element.querySelector("#input-1").focus();
@@ -112,9 +135,6 @@ var jsPsychSurveyTextTimed = (function (jspsych) {
                 var endTime = performance.now();
                 response_time = Math.round(endTime - startTime);
                 // create object to hold responses
-                var id = "Q" + 1;
-                trialdata.trial_index = id;
-                trialdata.response = survey_data;
             });
             const end_trial = () => {
                 // kill any remaining setTimeout handlers
@@ -127,15 +147,16 @@ var jsPsychSurveyTextTimed = (function (jspsych) {
                 // save data
                 var trial_data = {
                     rt: response_time,
-                    trialdata
+                    response: survey_data,
                 };
                 // clear the display
                 display_element.innerHTML = "";
                 // move on to the next trial
                 this.jsPsych.finishTrial(trial_data);
+                survey_data = [];
             };
-            this.jsPsych.pluginAPI.setTimeout(end_trial, trial.trial_duration * 1000);
             var startTime = performance.now();
+            this.jsPsych.pluginAPI.setTimeout(end_trial, trial.trial_duration * 1000);
 
         }
 

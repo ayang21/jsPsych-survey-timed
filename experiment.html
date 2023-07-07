@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- jsPsych dependencies -->
+        <script src="./dist/jspsych.js"></script>
+        <link href="./dist/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="./dist/plugin-html-keyboard-response.js"></script>
+        <script src="./dist/plugin-image-keyboard-response.js"></script>
+        <script src="./dist/plugin-survey-text-timed.js"></script>
+        <script src="./dist/plugin-preload.js"></script>
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+        <title>Document</title>
+    </head>
+    <body>
+
+    </body>
+    <script>  
+        // function set(){
+        //     const [stim, changeStim] = React.useState("hi");
+        // }
+        // set 
+        survey_data = []
+        function repeat_form(){
+                var entries = document.getElementById("input-1");
+                survey_data.push(entries.value);
+                document.getElementById("list-of-entries").innerHTML += '<p id = "entry-items" style = "border: solid #666666 1px; padding: none; margin: 2px; border-radius: 5px;"> ' + entries.value + "</p>";
+                // document.getElementById('test').style.animation = 'fading 2s infinite'
+                entries.value = "";
+                entries.focus();    
+                
+        }
+
+        const jsPsych = initJsPsych({
+            on_finish: function(){
+                jsPsych.data.displayData();
+            }
+        });
+        var timeline = [];
+        
+        var introductions = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: `
+                <p style = "width: 10 rem; max-width = 100%; color: red;">Welcome! In our experiment, you will be presented a word in the middle of the scrren, and it is your task to type down as many words that come up to mind as you can.</p><p>You will be given 10 seconds to do the task</p>
+                <p>Press any key to begin.</p>
+            `
+        }
+        timeline.push(introductions);
+
+        var test = {
+            type: jsPsychSurveyTextTimed,
+                prompt: 'How old are you?', 
+                trial_duration: 10,
+                placeholder: "Enter here",
+        }
+        timeline.push(test);
+        
+
+        var test2 = {
+            type: jsPsychSurveyTextTimed,
+                prompt: 'How old are you?', 
+                trial_duration: 10,
+                placeholder: "Enter here",
+        }
+        timeline.push(test2);
+        
+        jsPsych.run(timeline);
+    </script>
+</html>

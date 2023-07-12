@@ -1,0 +1,11 @@
+# Comment to be posted to on PRs from first time contributors in your repository
+newPRWelcomeComment: |
+  Thanks for opening this pull request! :)
+
+  I am simply testing this bot :)
+
+# Configuration for first-pr-merge - https://github.com/behaviorbot/first-pr-merge
+
+# Comment to be posted to on pull requests merged by a first time user
+firstPRMergeComment: >
+  Admittedly, github is confusing sometimes :)

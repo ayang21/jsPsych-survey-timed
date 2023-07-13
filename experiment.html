@@ -8,11 +8,8 @@
         <script src="./dist/jspsych.js"></script>
         <link href="./dist/jspsych.css" rel="stylesheet" type="text/css" />
         <script src="./dist/plugin-html-keyboard-response.js"></script>
-        <script src="./dist/plugin-image-keyboard-response.js"></script>
         <script src="./dist/plugin-survey-text-timed.js"></script>
         <script src="./dist/plugin-preload.js"></script>
-        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
         <title>Document</title>
     </head>
@@ -38,22 +35,55 @@
         }
         timeline.push(introductions);
 
+        var test_stimuli = [
+            { prompt: "Traffic"},
+            { prompt: "Cow"},
+            { prompt: "Happiness"},
+            { prompt: "Sadness"},
+        ];
+
+        /* define fixation and test trials */
+        var fixation = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: '<div style="font-size:60px;">+</div>',
+            choices: "NO_KEYS",
+            trial_duration: function(){
+                return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
+            },
+            data: {
+                task: 'fixation'
+            }
+        };
+
         var test = {
             type: jsPsychSurveyTextTimed,
-                prompt: 'How old are you?', 
-                trial_duration: 10,
-                placeholder: "Enter here",
-        }
-        timeline.push(test);
-        
+            prompt: jsPsych.timelineVariable('prompt'),
+            placeholder: "Enter here",
+            max_inputs: 10,
+            trial_duration: 10,
+            data: {
+                task: 'response',
+            }
+        };
 
-        var test2 = {
-            type: jsPsychSurveyTextTimed,
-                prompt: 'How old are you?', 
-                trial_duration: 10,
-                placeholder: "Enter here",
-        }
-        timeline.push(test2);
+        /* define test procedure */
+        var test_procedure = {
+            timeline: [fixation, test],
+            timeline_variables: test_stimuli,
+            randomize_order: true
+        };
+        timeline.push(test_procedure);
+
+        /* define debrief */
+        var debrief_block = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function() {
+                return `<p>Thank you very much for having took your time to do our experiment!</p>
+                <p>Your responses look great and we can't wait to fully review them.</p>
+                <p>Press any key to complete the experiment. Thank you!</p>`;
+            }
+        };
+        timeline.push(debrief_block);
         
         jsPsych.run(timeline);
     </script>

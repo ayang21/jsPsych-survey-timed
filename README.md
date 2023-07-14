@@ -3,4 +3,4 @@ Created a plugin for jsPsych to allow for a timed survey allowing user to input 
 
 This plugin inlcludes the following: 
 
-(More info soon!)
+(More info soon to come!)

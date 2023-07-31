@@ -8,11 +8,19 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           issuesOpened: |
-            👋 @{{ Pushkin }}
-            Thank you for raising an issue. We will will investigate into the matter and get back to you as soon as possible.
-            Please make sure you have given us as much context as possible.
+            👋 
+            Thanks for opening this issue! We will investigate into the matter and get back to you as soon as possible. Please make sure you have given us as much context as possible:
+            
+            - Remember to include any code snippets, CLI outcomes, and/or screenshots/GIFs that come with your issue.
+            - Remember to link relevant issues to yours whenever possible.
+            - Remember to stay patient! While waiting for a response, head on over to our discussions page if there hasn’t been a response.
 
           pullRequestOpened: |
-            👋 @{{ Pushkin }}
-            Thank you for raising your pull request.
-            Please make sure you have followed our contributing guidelines. We will review it as soon as possible
+            👋 
+            Thanks for making this pull request! We will review it as soon as possible
+            
+            - Remember to include any code snippets, CLI outcomes, and/or screenshots/GIFs that come with your issue.
+            - Remember to link relevant issues to yours whenever possible.
+            - Out of good pull request habit, remember to fork the main repo, and create your own branches before committing any changes to the code, where you can then choose to create a pull request back to the main branch
+
+

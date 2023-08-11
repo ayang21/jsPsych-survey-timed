@@ -14,6 +14,7 @@ jobs:
             - Remember to include any code snippets, CLI outcomes, and/or screenshots/GIFs that come with your issue.
             - Remember to link relevant issues to yours whenever possible.
             - Remember to stay patient! While waiting for a response, head on over to our discussions page if there hasn’t been a response.
+            - [JavaScript Tutorial](https://www.codecademy.com/learn/introduction-to-javascript)
 
           pullRequestOpened: |
             👋 

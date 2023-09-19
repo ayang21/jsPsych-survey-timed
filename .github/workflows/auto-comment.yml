@@ -11,17 +11,23 @@ jobs:
             👋 
             Thanks for opening this issue! We will investigate into the matter and get back to you as soon as possible. Please make sure you have given us as much context as possible:
             
-            - Remember to include any code snippets, CLI outcomes, and/or screenshots/GIFs that come with your issue.
-            - Remember to link relevant issues to yours whenever possible.
-            - Remember to stay patient! While waiting for a response, head on over to our discussions page if there hasn’t been a response.
+            - Includes any code snippets, and/or any CLI outcomes that come with your issue (If possible, copy the error text directly rather than screenshotting) and also what code you were running when you encountered this issue, all within ``` blocks ``` using “```”
+            - Includes the version number of each of the following: Pushkin, Pushkin-cli, experiment and site template, node.js.
+            - Links to any relevant issues.
+            - If your issue is about JsPsych and not about the integration/interaction between JsPsych and Pushkin, then post the issue to JsPsych’s [GitHub page](https://github.com/jspsych/jsPsych/issues).
+            - Stay patient! While waiting for a response, head on over to [our discussions page](https://github.com/pushkin-consortium/pushkin/discussions)!
+
+            For more information on coding-related questions: 
+            
             - [JavaScript Tutorial](https://www.codecademy.com/learn/introduction-to-javascript)
+            - [JsPsych Tutorial](https://www.jspsych.org/7.3/tutorials/hello-world/#jspsych-hello-world-experiment)
+            - [Pushkin Docs](https://languagelearninglab.gitbook.io/pushkin/)
 
           pullRequestOpened: |
             👋 
-            Thanks for making this pull request! We will review it as soon as possible
+            Thanks for making this pull request! We will review it as soon as possible, in the meantime, double check that your PR:
+
             
-            - Remember to include any code snippets, CLI outcomes, and/or screenshots/GIFs that come with your issue.
-            - Remember to link relevant issues to yours whenever possible.
-            - Out of good pull request habit, remember to fork the main repo, and create your own branches before committing any changes to the code, where you can then choose to create a pull request back to the main branch
-
-
+            - Includes a thorough explanation of what your pull request is changing/adding to Pushkin.
+            - Links to any relevant issues to the pull request.
+            - In the interest of good development habits, if you wish to commit changes, create a new branch and then submit a pull request with your changes.
